@@ -1,0 +1,21 @@
+{
+  "openapi": "3.0.3",
+  "info": { "title": "submissions-service", "version": "0.1.0" },
+  "paths": {
+    "/health": { "get": { "responses": { "200": { "description": "ok" } } } },
+    "/ready": { "get": { "responses": { "200": { "description": "ready" }, "503": { "description": "not ready" } } } },
+    "/submissions": {
+      "post": {
+        "requestBody": { "required": true, "content": { "application/json": { "schema": { "type": "object" } } } },
+        "responses": { "201": { "description": "created" }, "429": { "description": "duplicate" } }
+      }
+    },
+    "/submissions/by-business/{businessId}": {
+      "get": {
+        "parameters": [{ "name": "businessId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": { "200": { "description": "list" } }
+      }
+    }
+  }
+}
+
